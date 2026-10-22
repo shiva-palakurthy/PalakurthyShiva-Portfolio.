@@ -1,0 +1,214 @@
+Database Concepts:
+------------------
+
+Importance of DB concepts 
+
+Date engineer --> We are working on data , data, data , data 
+
+HOw we are going to get all this data --> 	
+	Source systems --> File formats  / tabular format
+	
+	.txt
+	.csv
+	.json
+	.xml
+	.parquet
+	.avro
+	.orc
+	
+	Source --> data processing operations --> target system [tabular format]
+	
+	Tables --> Database system --> on top of these tables if you want to perform any kind of operations (read/insert/change/aggregating/joins) ==> Database concepts
+	
+	Data engineer communication with Database system --> How ??? [SQL - Structured query language]
+	
+	person1 --> Person2 --> communciation --> language 
+	
+************************************************************************************************
+
+Databses --> Mysql/sqlserver/teradata...
+
+Mysql --> SQL --> 
+
+SQL server --> SQL --> 5 to 10% syntax difference [extra functions]
+Teradata --> SQL --> 5 to 10% syntax difference [extra functions]
+
+************************************************************************************************
+
+Database:
+---------
+Database is nothing but collection of different database objects which we are using for the purpose of storing data
+and processing data.
+
+database objects:
+-----------------
+1. Tables
+2. Views
+3. Triggers
+4. Stored procedures
+
+
+Table:
+------
+Table is nothing its a kind of 2D represenation of data .
+2D - Rows X columns
+Tables is nothing but collection of rows and columns
+
+Rows X columns
+Entry of Records
+
+Row:
+----
+Row is nothing instance of an object 
+Object (employee,customer,sales,transaction..)
+
+1	srinivas	Hyderabad	1000000
+2	quality		bengalore	2000000
+
+
+Rows/Instance/Record
+
+Column:
+-------
+Columns are nothing but characterstics of an object
+
+eid	 ename	location	salary
+
+characterstics/columns/attributes
+
+Employee:
+---------
+
+
+eid	ename		location	salary
+------------------------------------
+1	srinivas	Hyderabad	1000000
+2	quality		bengalore	2000000
+
+
+
+Table/Row/Column/Metadata/Actual data
+*******************************************************************************
+Create a table/Maintain one table in database system:
+	--> preerquisites 
+	
+1. Tablename
+2. Column names / Meta data 
+3. Datatype [integer/varchar/char/date/float/double/decimal/timestamp]
+4. Datatype length
+5. Constraints
+
+
+In real time projects from where we can able to get all above information?? Data modellers
+In a project who will decide how many number of tables we need to maintain? Data modellers
+In a table who will decide how many number of columns we need to maintain? Data modellers
+
+
+as a data modeller where he will maintain all tables information ? Physical data model [PDM]
+
+who will create the table by using PDM document?  Data engineer/Database admin (DBA)
+
+As a data modeller if I want to create PDM document what would be preerquisites to me? Requirements of the project/Domain knowledge
+
+Banking domain
+Telecom domain
+insurance domain
+
+
+*************************************************************************************************************
+
+In real time projects --> who will decide which data base we need to use and single database or multple databses?
+
+Collective decission --> CLient [data modellers/DBA/BA/DA/TEchincal people]
+Project --> Single DB / Multple DB --> Multple Database 
+
+source - mysql
+target - teradata
+
+*************************************************************************************************************
+
+PDM / You want to create the table? 
+where we need to to create the table? Database system
+who is going to create the table? Data engineer
+
+Data engineer we need to communciate with Database system?
+
+SQL --> Structure Query language
+
+Type of Comamnds:
+----------------
+1. DDL - Data definition language
+2. DML - Data manipulation language
+3. DRL - Data retrieval language
+4. DTL - Data transaction language
+5. DCL - Data control language
+
+DDL - Data definition language:
+------------------------------
+As per the requirements if you want to do any kind operations on structure of the Databse objects then we can go for DDL commands
+
+1. Define/Create the structure of the table - CREATE
+2. Modify the structure of the table - ALTER
+3. Remove the structure of the table - DROP
+
+DML - Data manipulation language:
+---------------------------------
+As per the requirements if you want to do any kind operations on DATA then we can go for DML commands
+
+1. Load/maintain/insert the data - INSERT
+2. Modifying the data - UPDATE
+3. Deleting the data - DELETE
+
+Difference between ALTER AND UPDATE -- 
+		alter - modifiction of your table structure (meatadata)
+		update - modification on top of your data 
+		
+Difference between Delete and Drop - 
+		DROP - To remove the table structure we need to go for DROP
+		Delete - to remove the data 
+		
+With out data we can able to maintain table structure --> Empty tables --> Correct 		
+With out having structure we can able to maintain the data --> Wrong statemenet
+
+*************************************************************************************************************
+DCL - Data control Language:
+-----------------------------
+whenver you want to control access on your database objects then we can able to use DCL commands.
+
+Database --> Table1 --> 100 people are there 
+		You want to give access on top of this table to only 50 people 
+		
+1. Provide the access - GRANT
+2. Remove the access  - REVOKE
+
+database admin --> DBA --> 
+
+DRL - Data retrieval language:
+-----------------------------
+If you want to retrieve the data from databas system then we have to use DRL commands.
+
+SELECT 
+
+select * from employee;
+select * from policy;
+
+DTL - Data transaction languge:
+-------------------------------
+As per the requirement if you want to handle the transactions on your database system then we can able tu se use DTL commands.
+
+word document/notepad --> in this you typed 10 lines after that you are adding 11th line --> but in 11th line there is a mistake , you want to revert the previous changes ==> UNDO --> Control+Z
+
+notepad+word --> I want to save changes ==> Ctrl+s
+
+To perfrom undo operations on database system --> ROLLBACK
+to save the changes peramanently --> COMMIT
+
+DDL --> create/alter/drop --> STRUCTURE
+DML --> ISNERT/UPDATE/DELETE --> Data
+DRL --> SELECT --> Retreival operations
+DCL --> GRANT/REVOKE --> Control the access
+DTL --> Commit/Rollback --> to control the transactions
+
+
+
+

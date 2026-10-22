@@ -7,6 +7,7 @@ Generative AI (GenAI) is artificial intelligence that creates content such as te
 ## 📚 What I’m Learning
 
 - Python — Programming fundamentals for building AI applications.
+- SQL - is a programming language used to store, retrieve, update, and  manage data in databases.
 - LLM Foundations — Understanding large language models and prompting.
 - LLM Providers — Exploring AI models and working with their APIs.
 - RAG — Using relevant documents to help AI generate grounded answers.
