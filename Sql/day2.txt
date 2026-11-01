@@ -1,0 +1,270 @@
+Database concepts
+	database: Collectino of different DB objects (table,views,triggers,stored procedure)
+	table: 2D represenations of the data, collection of rows and columns
+	row: instance of an object instance/rows/records
+	column: characterstcies of an object column/attributes/characterstcies
+	tname,cname -- Data modeller (PDM)
+	DDL - structure - CREATE/ALTER/DROP
+	DML - Data - INSERT/UPDATE/DELETE
+	DCL - Access - GRANT/REVOKE
+	DTL - Traanctions - COMMIT/ROLLBACK
+	DRL - Retreive - SELECT
+	
+	INSTALLATION
+********************************************************************************************
+
+Whenever you want to create the table we need to get below information
+
+1. Table name
+2. Column name
+3. Datatypes [Integer,varchar(30),decimal(10,3),date,timestamp,char(2)]
+4. Datatype length 
+5. Constraints 
+
+
+syntax for create commands:
+--------------------------
+create table tablename
+(
+columnname1 datatype constraint,
+columname2 datatype constraint,
+columnname3 datatype constraint
+..........
+..........
+..........
+)
+
+Constraints:
+------------
+While creation of the tables on top of any columns if you want to restrict the data as per your requirements we can go for constraints.
+
+Different types of constraints:
+-------------------------------
+1. unique : As per the requirement if you dont want to allo any duplicates on top of a column then we can use unique constraint.
+
+2. not null: As per the requirement if you want to restrict null values or unknwon values in to a column then we can able to notnull constraint.
+
+Note: as per the requirement on top of the same column we can able to apply any number of constraints.
+
+null: unknown values or non defined values or empty value
+
+3. check: As per the requirement if you dont want allow any values based on specific condition then we can able to use check constraint.
+
+in emp table I want to allow only the employee whose salaray > 500 ==>  sal>500
+
+
+4. Primary key: If you apply PK constraint on top of a column then it will not allow duplicates and also it will not allow null values.
+	- In a table if you want to identfy a unique records based on your requirement then we need to apply PRIMARY key constraint.
+	- In a table we can able to maintain only one PK constraint.
+Primary key : Unique+not null
+
+
+5. Foreign key: TO maintain relationship between multple tables in database system we need to maintain Foreign key constraint.
+
+6. Default : If we are not passing any values to a specific then by default you want to allow a default values, for this kind of requirements we can able to use default constraint.
+
+can we able to replcase unique constraint with PK --> NO
+can we able to replace not null with PK --> NO
+can we able to replace notnull+ unique with PK --> Yes (terms and conditions - that table should not contain any other PK)
+
+In real time projects while creation of the tables do we need to worry about which constraint we need to apply on each and every column ==> Data modeller (PDM)
+
+
+***********************************************************************************************
+mysql command line client: 
+
+
+Practicals:
+----------
+1. What all are available databases we are having --> show databases;
+
+as part of installation of mysql by default it will create few databases and those databases or tables we can call it as system databses or sytstem tables.
+
+2. to create database in database system --> create database databasename;
+create database empdb;
+
+3. To use created database --> use databasename;
+use empdb
+							   
+4. How to understand in which database you are working --> select database();
+
+
+3. I want to create a table: 
+		table --> in my database --> empdb
+
+4. in database if you want to see list of tables --> show tables;
+		
+***************************************************************************************
+Today's Commands:
+-----------------------
+mysql> create table emp (id int);
+ERROR 1046 (3D000): No database selected
+mysql> create database empdb;
+ERROR 1007 (HY000): Can't create database 'empdb'; database exists
+mysql> create database empdb1;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create table emp (id int);
+ERROR 1046 (3D000): No database selected
+mysql> use empdb1;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| empdb1     |
++------------+
+1 row in set (0.00 sec)
+
+mysql> create table emp (id int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| empdb1     |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_empdb1 |
++------------------+
+| emp              |
++------------------+
+1 row in set (0.04 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| empdb              |
+| empdb1             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sqlbatch1          |
+| sys                |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> use information_schema;
+Database changed
+mysql> show tables;
+
+
+mysql> select  * from INNODB_TABLES;
+
+mysql> use empdb1;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_empdb1 |
++------------------+
+| emp              |
++------------------+
+1 row in set (0.00 sec)
+
+
+mysql> create table emp
+    -> (id int unique,
+    -> name varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into emp values (1,'Ram');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from emp;
++------+------+
+| id   | name |
++------+------+
+|    1 | Ram  |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into emp values (1,'Ram');
+ERROR 1062 (23000): Duplicate entry '1' for key 'emp.id'
+mysql> show table emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'emp' at line 1
+mysql> desc emp;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  | UNI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+mysql> create table emp2
+    -> (id int not null,
+    -> name varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc emp2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| empdb              |
+| empdb1             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sqlbatch1          |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_empdb |
++-----------------+
+| emp             |
+| stud            |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> use empdb1;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_empdb1 |
++------------------+
+| emp              |
+| emp2             |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into emp2 values (2,'uu');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp2;
++----+------+
+| id | name |
++----+------+
+|  2 | uu   |
++----+------+
+1 row in set (0.00 sec)
+
+mysql> insert into emp2(name) values ('iii');
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
+mysql> insert into emp2(id) values (3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from emp2;
++----+------+
+| id | name |
++----+------+
+|  2 | uu   |
+|  3 | NULL |
++----+------+
+2 rows in set (0.00 sec)
