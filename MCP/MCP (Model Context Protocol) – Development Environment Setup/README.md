@@ -268,6 +268,15 @@ npm verified using npm --version.
 npx verified using npx --version.
 Claude Desktop installed.
 Development environment ready for MCP server development.
+ 
+ where.exe
+
+1. `where.exe` is a Windows command used to locate executable files.
+2. `where.exe uv` finds the installation path of UV.
+3. `where.exe npx` finds the installation path of NPX.
+4. `where.exe npm` finds the installation path of NPM.
+5. It helps verify whether development tools are installed and accessible through the system PATH.
+
 🎯 12. Learning Objectives
 
 After completing this setup, we will be ready to:
