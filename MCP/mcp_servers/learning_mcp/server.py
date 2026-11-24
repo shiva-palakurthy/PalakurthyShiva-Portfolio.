@@ -53,6 +53,29 @@ def is_even(number: int) -> bool:
     """Check whether a number is even."""
     return number % 2 == 0
 
+def multiplication_table(number: int):
 
+    table = []
+
+    for i in range(1, 11):
+
+        result = number * i
+
+        table.append(f"{number} x {i} = {result}")
+
+    return "\n".join(table)
+
+@mcp.tool()
+def number_factors(number: int):
+
+    factors = []
+
+    for i in range(1, number + 1):
+
+        if number % i == 0:
+
+            factors.append(i)
+
+    return factorse
 if __name__ == "__main__":
     mcp.run()
